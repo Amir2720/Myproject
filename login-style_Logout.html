@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login_logout.css">
+</head>
+<body>
+    <div class="page_name" style="display: flex; justify-content: center; align-items: center; margin-top: 3rem;">
+        <img src="https://th.bing.com/th/id/OIP.XsHV5oMAY1He6Y_0kh_2ywAAAA?rs=1&pid=ImgDetMain" height="90px" width="90px" style="border-radius: 50%;">
+        <h1 style="text-align: center;">Book-Busket</h1>
+    </div>
+    
+    <div class="container">
+        <form id="loginForm">
+            <div class="card">
+                <h2>Sign in</h2><br>
+                <p>Email or mobile phone number</p>
+                <label for="email"></label>
+                <input type="email" name="email" id="email" class="user_mail">
+                <br><br>
+                
+                <div class="para">
+                    <p>Password</p>
+                    <p><a href="#">Forgot Your password?</a></p>
+                </div>
+                <label for="password"></label>
+                <input type="password" name="password" id="password" class="user_pass">
+    
+                <div class="btn">
+                    <button type="button" onclick="auth()">
+                        <b>Sign in</b>
+                    </button>
+                </div>
+    
+                <div class="footer">
+                    <p>New to Book-busket?</p>
+                    <div class="btn_footer">
+                        <button type="button" id="logoutButton" onclick="logout()" style="margin-bottom: 4px;">
+                            <b>Logout</b>
+                        </button>
+                        <button type="button" onclick="createAccount()">
+                            <b>Create an account</b>
+                        </button>
+                    </div>
+    
+                    <p class="privacy_policy">By signing in you are agreeing to our <a href="#">Conditions of Use and Sale</a> and our <a href="#">Privacy Notice</a></p>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <script>
+
+        function auth() {
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+        
+            if (email === "admin@gmail.com" && password === "user") {
+                var arr=new Array(email, password);
+                var jData=JSON.stringify(arr);
+                localStorage.setItem('uinfo',jData);
+                document.getElementById('logoutButton').style.display = 'block';
+                // localStorage.setItem()
+                location.replace("index.html");
+            } else {
+                alert("Wrong data");
+                // document.getElementById('logoutButton').style.display = 'none';
+            }
+        }
+
+        function logout(){
+            document.getElementById('logoutButton').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
